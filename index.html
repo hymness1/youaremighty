@@ -7,10 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="theme-color" content="#1e2327">
     <title>You Are Mighty!</title>
+    <!-- Chemins corrigés (relatifs) pour GitHub Pages -->
     <script src="lang.js"></script>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 </head>
 <body class="invisible">
 
@@ -73,7 +74,6 @@
     </div>
 </div>
 
-
 <script>
     var urlParts = window.location.pathname.split('/');
     var DEFAULT_LANG = 'en';
@@ -106,8 +106,12 @@
     document.getElementById('create-your-own').innerText = TEXTS[lang].createYourOwn;
     document.getElementById('create-your-own').href = '/youaremighty' + (lang === DEFAULT_LANG ? '/' : '/' + lang);
 
+    // Audio avec chemin relatif et ralentissement de 20%
     var audio = new Audio('audio.mp3');
     audio.load();
+    
+    var speedMultiplier = 1.25; // Augmente les délais d'animation de 25% pour compenser le son ralenti
+    audio.playbackRate = 0.8;   // Réduit la vitesse de l'audio à 80%
 
     if (name) {
         document.body.classList.add('site-slideshow');
@@ -161,7 +165,7 @@
                 content.innerHTML = "";
                 content.appendChild(slideshow);
                 setTimeout(hideSlide(0));
-                setTimeout(nextSlide, 3200);
+                setTimeout(nextSlide, 3200 * speedMultiplier); // Délai ajusté
             } else {
                 setTimeout(startSlidesOnMusicStart, 100);
             }
@@ -195,19 +199,6 @@
 
         ];
 
-        // var startFromSlide = 0;
-        //
-        // if (startFromSlide) {
-        //     var timesSums = times.map((t) => t[1] + t[2]);
-        //     var offset = 0;
-        //     for (var j = 0; j < startFromSlide; j++) {
-        //         offset += times[j][1] + times[j][2];
-        //     }
-        //     offset -= times[startFromSlide - 1][2];
-        //     audio.currentTime = offset / 1000;
-        //     currentVisibleSlide = startFromSlide - 1;
-        // }
-
         function hideSlide(slideNumber) {
             return function () {
                 var slide = slideshow.children[slideNumber].children[0];
@@ -228,7 +219,6 @@
         function showSlide(slideNumber) {
             return function () {
                 var slide = slideshow.children[slideNumber].children[0];
-                // slide.style.display = 'block';
                 slide.style.opacity = '0';
                 setTimeout(function () {
                     slide.style.opacity = '1';
@@ -238,7 +228,7 @@
                 if (span) {
                     setTimeout(function () {
                         span.style.opacity = '1';
-                    }, times[slideNumber][0]);
+                    }, times[slideNumber][0] * speedMultiplier); // Délai ajusté
                 }
             }
         }
@@ -248,9 +238,9 @@
             var slideTimes = times[currentVisibleSlide];
             if (slideTimes) {
                 setTimeout(showSlide(currentVisibleSlide));
-                setTimeout(nextSlide, slideTimes[1] + slideTimes[2]);
+                setTimeout(nextSlide, (slideTimes[1] + slideTimes[2]) * speedMultiplier); // Délai ajusté
                 if (times[currentVisibleSlide + 1]) {
-                    setTimeout(hideSlide(currentVisibleSlide), slideTimes[1]);
+                    setTimeout(hideSlide(currentVisibleSlide), slideTimes[1] * speedMultiplier); // Délai ajusté
                 }
             } else {
                 document.getElementById('superman').style.opacity = "1";
@@ -260,12 +250,6 @@
                 }, 2000);
             }
         }
-
-        // document.body.addEventListener('keyup', function (e) {
-        //     if (e.key === 'Enter') {
-        //         play();
-        //     }
-        // });
 
     } else {
         document.body.classList.add('site-form');
