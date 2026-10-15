@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="theme-color" content="#1e2327">
     <title>You Are Mighty!</title>
-    <script src="/youaremighty/lang.js"></script>
-    <link rel="stylesheet" href="/youaremighty/style.css">
+    <script src="lang.js"></script>
+    <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 </head>
@@ -106,7 +106,7 @@
     document.getElementById('create-your-own').innerText = TEXTS[lang].createYourOwn;
     document.getElementById('create-your-own').href = '/youaremighty' + (lang === DEFAULT_LANG ? '/' : '/' + lang);
 
-    var audio = new Audio('/youaremighty/audio.mp3');
+    var audio = new Audio('audio.mp3');
     audio.load();
 
     if (name) {
