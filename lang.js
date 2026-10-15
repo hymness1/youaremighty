@@ -96,4 +96,5 @@ var TEXTS = {
             "<em>R</em>ien ne serait pareil sans toi...",
             "parce que...",
             "<span><em>T</em>u es FORT.E.</span>"
-}
+        ]
+    }
