@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="theme-color" content="#1e2327">
     <title>You Are Mighty!</title>
-    <!-- Chemins corrigés (relatifs) pour GitHub Pages -->
     <script src="lang.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -106,12 +105,11 @@
     document.getElementById('create-your-own').innerText = TEXTS[lang].createYourOwn;
     document.getElementById('create-your-own').href = '/youaremighty' + (lang === DEFAULT_LANG ? '/' : '/' + lang);
 
-    // Audio avec chemin relatif et ralentissement de 20%
     var audio = new Audio('audio.mp3');
     audio.load();
     
-    var speedMultiplier = 1.25; // Augmente les délais d'animation de 25% pour compenser le son ralenti
-    audio.playbackRate = 0.8;   // Réduit la vitesse de l'audio à 80%
+    // Multiplicateur pour doubler le temps des animations (1 / 0.5)
+    var speedMultiplier = 2.0; 
 
     if (name) {
         document.body.classList.add('site-slideshow');
@@ -125,146 +123,4 @@
 
         var content = document.getElementById('content');
         var slideshow = document.createElement('div');
-        slideshow.className = 'slideshow';
-
-        var firstSlide = document.createElement('div');
-        firstSlide.className = 'slide';
-        firstSlide.id = 'slide0';
-        firstSlide.innerHTML = '<div>' + document.getElementById('slide0').innerHTML + '</div>';
-        slideshow.appendChild(firstSlide);
-
-        for (var i = 0; i < texts.length; i++) {
-            var slide = document.createElement('div');
-            slide.classList.add('slide');
-            slide.id = 'slide' + (i + 1);
-            slide.innerHTML = '<div>' + texts[i] + '</div>';
-            if (i >= 4) {
-                var slideContent = slide.children[0];
-                slideContent.style.transform = 'scale(6.0)';
-                slideContent.classList.add('fast');
-            }
-            slideshow.appendChild(slide);
-        }
-
-        var currentVisibleSlide = 0;
-        var playing = false;
-
-        function play() {
-            if (!playing) {
-                playing = true;
-                audio.play();
-                startSlidesOnMusicStart();
-                setTimeout(function () {
-                    document.getElementById('playButton').innerHTML = TEXTS[lang].waitForIt;
-                }, 1000);
-            }
-        }
-
-        function startSlidesOnMusicStart() {
-            if (audio.currentTime > 0) {
-                content.innerHTML = "";
-                content.appendChild(slideshow);
-                setTimeout(hideSlide(0));
-                setTimeout(nextSlide, 3200 * speedMultiplier); // Délai ajusté
-            } else {
-                setTimeout(startSlidesOnMusicStart, 100);
-            }
-        }
-
-        var times = [
-            // 2nd part delay, current text visible, next slide gap
-            [0, 0, 3200],
-            [900, 2750, 1800],
-            [900, 2850, 2300],
-            [900, 2600, 1700],
-            [2200, 4400, 600],
-            [0, 950, 250],
-            [0, 950, 250],
-            [0, 950, 250],
-            [0, 950, 250],
-            [0, 950, 250],
-            [0, 950, 250],
-            [0, 950, 250],
-            [0, 950, 250],
-            [0, 950, 250],
-            [0, 950, 250],
-            [0, 950, 250],
-            [0, 950, 250],
-            [0, 950, 250],
-            [0, 1900, -100],
-            [0, 1900, -100],
-            [0, 1900, -100],
-            [0, 1900, 500],
-            [1000, 1000, 500],
-
-        ];
-
-        function hideSlide(slideNumber) {
-            return function () {
-                var slide = slideshow.children[slideNumber].children[0];
-                slide.style.opacity = '1';
-                setTimeout(function () {
-                    slide.style.opacity = '0';
-                });
-                if (slideNumber === 4) {
-                    slide.style.transform = 'scale(8.0)';
-                    slide.getElementsByTagName('span')[0].style.opacity = '0';
-                    slide.getElementsByTagName('span')[0].style.transitionDuration = '0.1s !important';
-                } else if (slideNumber > 4) {
-                    slide.style.transform = 'scale(0.5)';
-                }
-            }
-        }
-
-        function showSlide(slideNumber) {
-            return function () {
-                var slide = slideshow.children[slideNumber].children[0];
-                slide.style.opacity = '0';
-                setTimeout(function () {
-                    slide.style.opacity = '1';
-                    slide.style.transform = 'scale(1.0)';
-                });
-                var span = slide.getElementsByTagName('span')[0];
-                if (span) {
-                    setTimeout(function () {
-                        span.style.opacity = '1';
-                    }, times[slideNumber][0] * speedMultiplier); // Délai ajusté
-                }
-            }
-        }
-
-        function nextSlide() {
-            ++currentVisibleSlide;
-            var slideTimes = times[currentVisibleSlide];
-            if (slideTimes) {
-                setTimeout(showSlide(currentVisibleSlide));
-                setTimeout(nextSlide, (slideTimes[1] + slideTimes[2]) * speedMultiplier); // Délai ajusté
-                if (times[currentVisibleSlide + 1]) {
-                    setTimeout(hideSlide(currentVisibleSlide), slideTimes[1] * speedMultiplier); // Délai ajusté
-                }
-            } else {
-                document.getElementById('superman').style.opacity = "1";
-                setTimeout(function () {
-                    document.getElementById('footer').style.opacity = '1';
-                    document.getElementById('github-stars').style.opacity = '1';
-                }, 2000);
-            }
-        }
-
-    } else {
-        document.body.classList.add('site-form');
-        document.getElementById('lang-btn-' + lang).classList.add('active');
-
-        function goToMighty() {
-            var name = document.getElementById('mightyName').value;
-            window.location.assign('/youaremighty' + (lang === DEFAULT_LANG ? '' : '/' + lang) + '/' + encodeURIComponent(name || 'You'));
-            return false;
-        }
-
-    }
-
-    document.body.classList.remove('invisible');
-
-</script>
-</body>
-</html>
+        slides
