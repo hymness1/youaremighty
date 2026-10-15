@@ -64,5 +64,36 @@ var TEXTS = {
             "because...",
             "<span><em>Y</em>ou Are Mighty!</span>"
         ]
-    }
+    },
+    fr: {
+        "pageTitle": "{name}, You Are Mighty!",
+        "header": "Bonjour {name}!",
+        "play": "Jouer",
+        "yourName": "Ton nom",
+        "create": "Créer",
+        "waitForIt": "Ça s'en vient...",
+        "createYourOwn": "Chante ta vie!",
+        "texts": [
+            "<em>U</em>ne personne <span>a la réponse à tout nos problèmes</span>",
+            "<em>U</em>ne personne <span>est toujours là lorsqu'on a besoin d'elle</span>",
+            "<em>A</em>u mortel <span>peut dissuader cette personne</span>",
+            "<span>Cette personne c'est... <em>TOI</em>!</span>",
+            "<em>T</em>u tu peux passer tous les obstacles",
+            "<em>T</em>u tu es plus fort.e que tous les ennemis",
+            "<em>T</em>u peut résoudre tous les problèmes",
+            "<em>T</em>u peux briser tous les barrières",
+            "<em>T</em>u peux conquérir toutes les batailles",
+            "<em>T</em>u peux détruire toutes les forteresse",
+            "<em>T</em>u peux réussir tous les tests",
+            "<em>T</em>u peur surpasser tous les Maîtres",
+            "<em>T</em>u peux dépasser toutes les attentes",
+            "<em>T</em>u peux gagnaerà tous les jeux",
+            "<em>T</em>u peux créer une oeuvre d'art",
+            "<em>T</em>u es plus malin que n'importe qui",
+            "<em>T</em>u peux réaliser l'impossible",
+            "<em>T</em>u influences tout le monde autour de toi",
+            "laissant trace partout où tu passes.",
+            "<em>R</em>ien ne serait pareil sans toi...",
+            "parce que...",
+            "<span><em>T</em>u es FORT.E.</span>"
 }
